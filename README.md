@@ -1,9 +1,8 @@
-<<<<<<< HEAD
+# 📦 issues-insights-tracker
+Issues Insights Tracker is a containerized microservices application that helps you track, process, and analyze issues in a structured way. It’s built using FastAPI for the REST API, Celery for handling background tasks, PostgreSQL for data storage, and Redis as the message broker.
+
 # 📝 Issues & Insights Tracker
-
 A lightweight SaaS portal to upload issues, track feedback, and generate insights.
-
----
 
 ## 🚀 Tech Stack
 
@@ -12,8 +11,6 @@ A lightweight SaaS portal to upload issues, track feedback, and generate insight
 - **Frontend:** (to be added) React or simple HTML/JS
 - **Containerization:** Docker + Docker Compose
 
----
-
 ## ⚙️ Getting Started
 
 1️⃣ Clone the repository:
@@ -21,9 +18,7 @@ A lightweight SaaS portal to upload issues, track feedback, and generate insight
 ```bash
 git clone https://github.com/your-username/issues-insights-tracker.git
 cd issues-insights-tracker
-=======
-# 📦 issues-insights-tracker
-Issues Insights Tracker is a containerized microservices application that helps you track, process, and analyze issues in a structured way. It’s built using FastAPI for the REST API, Celery for handling background tasks, PostgreSQL for data storage, and Redis as the message broker.
+
 
 # 🚩 The Problem
 
