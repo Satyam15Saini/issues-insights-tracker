@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+alembic
+pydantic
+celery
+passlib[bcrypt]
+python-jose[cryptography]
+redis  # optional if you decide to use Redis for Celery broker
+jinja2
+python-dotenv

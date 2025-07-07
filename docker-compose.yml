@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: issues_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Satyam123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    restart: always
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: 
+      context: ./backend
+    container_name: issues-insights-tracker-backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend/app:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:Satyam123@db:5432/issues_db
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+
+  worker:
+    build: 
+      context: ./backend
+    container_name: issues-insights-tracker-worker
+    command: celery -A celery_worker.celery_app worker --loglevel=info
+    volumes:
+      - ./backend/app:/app
+    depends_on:
+      - backend
+      - redis
+      - db
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:Satyam123@db:5432/issues_db
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+
+volumes:
+  postgres_data:
